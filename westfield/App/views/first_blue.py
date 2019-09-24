@@ -7,9 +7,32 @@
 # 项目名称  : westfield
 from flask import Blueprint, render_template
 
+from App.ext import db
+from App.models import User
+
 first = Blueprint("first", __name__)
 
 
 @first.route('/hi/')
 def hi():
     return render_template('index.html', msg='lianxiaorui')
+
+
+@first.route('/createdb/')
+def createdb():
+    db.create_all()
+    return '添加表成功'
+
+
+@first.route('/dropdb/')
+def dropdb():
+    db.drop_all()
+    return '删除成功'
+
+
+@first.route('/adddata/')
+def add_user():
+    user = User()
+    user.username = 'tom'
+    user.save()
+    return '添加数据成功'

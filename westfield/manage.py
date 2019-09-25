@@ -4,7 +4,8 @@ from App import create_app
 import os
 os.environ['FLASK_ENV'] = 'develop'
 
-app = create_app()
+env = os.environ.get("FLASK_ENV") or 'default'
+app = create_app(env)
 
 manager = Manager(app=app)
 manager.add_command('db', MigrateCommand)

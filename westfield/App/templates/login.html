@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<body>
+
+    <form action="{{ url_for('second.login') }} " method="post">
+        <span>用户名：</span> <label>
+        <input name="username" placeholder="请输入用户名" type="text"/>
+    </label>
+        <br>
+        <button>登陆</button>
+    </form>
+
+</body>
+</html>

@@ -5,7 +5,7 @@
 # 文件名称  : second_blue.py
 # 开发工具  : PyCharm
 # 项目名称  : westfield
-from flask import Blueprint, redirect, url_for
+from flask import Blueprint, redirect, url_for, request, render_template, Response, session
 
 second = Blueprint('second', __name__)
 
@@ -28,3 +28,23 @@ def getredirect():
     # return redirect('/hi/')
     # 反向解析
     return redirect(url_for('first.hi'))
+
+
+@second.route('/login/', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+    elif request.method == 'POST':
+        username = request.form.get('username')
+
+        response = Response("登陆成功%s" % username)
+        # response.set_cookie('username', username)
+        session['username'] = username
+        return response
+
+
+@second.route('/mime/')
+def get_mine():
+    # username = request.cookies.get('username')
+    username = session.get('username')
+    return 'welcome %s ' % username

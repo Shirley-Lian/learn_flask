@@ -15,7 +15,7 @@ first = Blueprint("first", __name__)
 
 @first.route('/hi/')
 def hi():
-    return render_template('index.html', msg='lianxiaorui')
+    return render_template('hello.html', msg='lianxiaorui')
 
 
 @first.route('/createdb/')

@@ -22,9 +22,16 @@ def get_db_uri(dbinfo):
 
 
 class Config:
+
     DEBUG = False
+
     TESTING = False
+
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+    SECRET_KEY = 'ADW'
+
+    SESSION_TYPE = 'redis'
 
 
 class DevelopConfig(Config):

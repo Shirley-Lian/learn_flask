@@ -26,7 +26,7 @@ class Config:
     DEBUG = False
 
     TESTING = False
-
+    # 禁止对象追踪修改
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     SECRET_KEY = 'ADW'

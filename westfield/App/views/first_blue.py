@@ -10,12 +10,12 @@ from flask import Blueprint, render_template
 from App.ext import db
 from App.models import User
 
-first = Blueprint("first", __name__)
+first = Blueprint("first", __name__, url_prefix='/db')
 
 
-@first.route('/hi/')
-def hi():
-    return render_template('hello.html', msg='lianxiaorui')
+@first.route('/')
+def index():
+    return render_template('index.html', title='首页')
 
 
 @first.route('/createdb/')
@@ -36,3 +36,27 @@ def add_user():
     user.username = 'tom'
     user.save()
     return '添加数据成功'
+
+
+@first.route('/addall/')
+def add_all():
+    users = []
+    for i in range(5):
+        user = User()
+        user.username = 'username_%d' % i
+        users.append(user)
+    db.session.add_all(users)
+    db.session.commit()
+    return "save all"
+
+
+@first.route('/getuser/')
+def get_user():
+    user = User.query.first()
+    return user.username
+
+
+@first.route('/showuser/')
+def show_users():
+    users = User.query.all()
+    return render_template('Students.html', students=users)

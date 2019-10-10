@@ -8,6 +8,7 @@ env = os.environ.get("FLASK_ENV") or 'default'
 app = create_app(env)
 
 manager = Manager(app=app)
+# 添加数据库迁移指令
 manager.add_command('db', MigrateCommand)
 
 if __name__ == '__main__':

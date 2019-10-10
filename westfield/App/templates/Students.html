@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="/static/firstblue/css/students.css">
+{% endblock %}
+{% block container %}
+    <div class="students">
+        <ul>
+            {% for s in students %}
+            <li>{{ s.username }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
